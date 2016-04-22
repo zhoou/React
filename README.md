@@ -7,7 +7,7 @@ The World of Learning React. Let's begining...
 <p>* Attention *</p>
 <p><small>This Project you need to be placed on the server or can be placed on the localhost to normal access.</small></p>
 
-<h4><a href='https://github.com/zhoou/React/tree/master/react-tutorial'><b># react-Tutorial</b></a></h4>
+<h4><a href='https://github.com/zhoou/React/tree/master/react-Tutorial'><b># react-Tutorial</b></a></h4>
 <p>This Projects build by according to the offical tutorial</p>
 <p>* Attention *</p>
 <p><small>This Project you need to be placed on the server or can be placed on the localhost to normal access.</small></p>
