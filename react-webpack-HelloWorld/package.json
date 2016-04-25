@@ -1,0 +1,21 @@
+{
+    "name": "react",
+    "version": "0.1.0",
+    "description": "",
+    "main": "webpack.config.js",
+    "dependencies": {
+        "react": "^15.0.1",
+        "react-dom": "^15.0.1",
+        "webpack": "^1.13.0"
+    },
+    "devDependencies": {
+        "babel-core": "^6.7.7",
+        "babel-loader": "^6.2.4",
+        "jsx-loader": "^0.13.2"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "zhoou",
+    "license": "ISC"
+}
