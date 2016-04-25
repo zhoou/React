@@ -24,11 +24,15 @@ This Projects build by according to the offical tutorial.
 
 I am very happy if this projects can help you . If you are interested, you can clone or download it.
 
-after you download , you should do it first:
+after you download , you should do it first if you have not install the `webpack` in global :
+```sh
+npm install webpack -g
+```
+then , begin to initialize the project : 
 ```sh
 npm install
 ```
-then , you need run it 
+Finally , run it :
 ```sh 
 webpack -p
 ```
