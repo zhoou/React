@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+
 module.exports = {
     entry: [
       __dirname + '/Scripts/entry.js'
@@ -11,16 +13,25 @@ module.exports = {
     },
     module: {
         loaders: [ 
-            { test: /\.js$/, loader: 'jsx-loader?harmony' },
-            { test: /\.jsx$/, loader: 'babel-loader!jsx-loader?harmony' },
-            { test: /\.css$/, loader: 'style-loader!css-loader'},
+            { 
+                test: /\.js$/, 
+                loader: 'jsx-loader?harmony' 
+            },
+            { 
+                test: /\.jsx$/, 
+                loader: 'babel-loader!jsx-loader?harmony' 
+            },
+            { 
+                test: /\.css$/, 
+                loader: 'style-loader!css-loader'
+            },
             { 
                 test: /\.(eot|woff|woff2|svg|ttf)$/, 
                 loader: "file-loader" ,
                 query : {
                         limit : 10000,
                         // Fonts目录
-                        name : 'Bootstrap/fonts/[name]_[hash].[ext]'
+                        name : 'Content/fonts/[name]_[hash].[ext]'
                     }
             }
         ]
@@ -45,6 +56,8 @@ module.exports = {
                 warnings: false
             }
         }),
-        new ExtractTextPlugin('Bootstrap/css/bootstrap.min.css')
+        new ExtractTextPlugin('Content/css/bootstrap.min.css'),
+        new ExtractTextPlugin('Content/css/main.css'),
+        commonsPlugin
     ]
 };

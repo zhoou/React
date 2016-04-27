@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var Hello = require('Hello');
 
 require('Bootstrap/dist/css/bootstrap.min.css');
+require('../Content/css/main.css');
 
 var MainBody=React.createClass({
 	render:function(){
