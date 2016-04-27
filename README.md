@@ -20,9 +20,26 @@ This Projects build by according to the offical tutorial.
 * `Attention`: This Project you need to be placed on the server or can be placed on the localhost to normal access.
 
 <h4><a href='https://github.com/zhoou/React/tree/master/react-webpack-HelloWorld'><b># react-webpack-HelloWorld</b></a></h4>
-`Primary Edition`  You can do it !!!
+`Primary Edition`  
 
 I am very happy if this projects can help you . If you are interested, you can clone or download it.
+
+after you download , you should do it first if you have not install the `webpack` in global :
+```sh
+npm install webpack -g
+```
+then , begin to initialize the project : 
+```sh
+npm install
+```
+Finally , run it :
+```sh 
+webpack -p
+```
+<h4><a href='https://github.com/zhoou/React/tree/master/react-webpack-bootstrap'><b># react-webpack-bootstrap</b></a></h4>
+`Junior high school edition` 
+
+This Projects add the bootstrap to webpack with react.
 
 after you download , you should do it first if you have not install the `webpack` in global :
 ```sh
