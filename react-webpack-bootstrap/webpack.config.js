@@ -13,7 +13,7 @@ module.exports = {
         loaders: [ 
             { test: /\.js$/, loader: 'jsx-loader?harmony' },
             { test: /\.jsx$/, loader: 'babel-loader!jsx-loader?harmony' },
-            { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
+            { test: /\.css$/, loader: 'style-loader!css-loader'},
             { 
                 test: /\.(eot|woff|woff2|svg|ttf)$/, 
                 loader: "file-loader" ,
@@ -45,6 +45,6 @@ module.exports = {
                 warnings: false
             }
         }),
-        new ExtractTextPlugin('Bootstrap/css/[name].css')
+        new ExtractTextPlugin('Bootstrap/css/bootstrap.min.css')
     ]
 };
