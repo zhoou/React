@@ -51,7 +51,7 @@ npm install
 ```
 Finally , run it :
 ```sh 
-webpack -p
+npm run build
 ```
 
 Expect me to be better !!!
