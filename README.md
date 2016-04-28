@@ -36,7 +36,7 @@ Finally , run it :
 ```sh 
 webpack -p
 ```
-<h4><a href='https://github.com/zhoou/React/tree/master/react-webpack-bootstrap'><b># react-webpack-bootstrap</b></a></h4>
+<h4><a href='https://github.com/zhoou/React/tree/master/react-webpack-es6-bootstrap'><b># react-webpack-es6-bootstrap</b></a></h4>
 `Junior high school edition` 
 
 This Projects add the bootstrap to webpack with react.
