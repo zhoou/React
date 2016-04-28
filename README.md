@@ -41,11 +41,7 @@ webpack -p
 
 This Projects add the bootstrap to webpack with react.
 
-after you download , you should do it first if you have not install the `webpack` in global :
-```sh
-npm install webpack -g
-```
-then , begin to initialize the project : 
+Begin to initialize the project : 
 ```sh
 npm install
 ```
