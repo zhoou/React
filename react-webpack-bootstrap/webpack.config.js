@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
 
-module.exports = {
+var options = {
     entry: [
       __dirname + '/Scripts/entry.js'
     ],
@@ -14,20 +14,16 @@ module.exports = {
     module: {
         loaders: [ 
             { 
-                test: /\.js$/, 
-                loader: 'jsx-loader?harmony' 
-            },
-            { 
-                test: /\.jsx$/, 
-                loader: 'babel-loader!jsx-loader?harmony' 
+                test: /\.jsx?$/, 
+                loader: 'babel' 
             },
             { 
                 test: /\.css$/, 
-                loader: 'style-loader!css-loader'
+                loader: ExtractTextPlugin.extract("style","css")
             },
             { 
                 test: /\.(eot|woff|woff2|svg|ttf)$/, 
-                loader: "file-loader" ,
+                loader: "file" ,
                 query : {
                         limit : 10000,
                         // Fonts目录
@@ -35,6 +31,9 @@ module.exports = {
                     }
             }
         ]
+    },
+    babel:{
+        presets: ['react', 'es2015'] // 要使用的编译器
     },
     resolve:{
         //自动补全识别哪些后缀
@@ -44,20 +43,29 @@ module.exports = {
             Hello : '../Components/Hello.js',//后续直接 require('Hello') 即可
         }
     },
-    devtool: false,
     plugins:[
-        new webpack.DefinePlugin({
-            'process.env':{
-              'NODE_ENV': JSON.stringify('production')  //发布时添加
-          }
+        new webpack.NoErrorsPlugin(),
+        new ExtractTextPlugin('./Content/css/[name].css',{
+            allChunks:true
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress:{
-                warnings: false
-            }
-        }),
-        new ExtractTextPlugin('Content/css/bootstrap.min.css'),
-        new ExtractTextPlugin('Content/css/main.css'),
         commonsPlugin
     ]
 };
+
+if(process.env.NODE_ENV==="production"){
+    options.devtool=false;
+    options.plugins=options.plugins.concat([
+        new webpack.DefinePlugin({
+            'process.env':{
+              'NODE_ENV': JSON.stringify('production')  //发布时添加
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+         compress:{
+              warnings: false
+             }
+        })
+    ]);
+};
+
+module.exports=options;

@@ -1,17 +1,21 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Hello = require('Hello');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import HelloComponents from 'Hello';
 
 require('Bootstrap/dist/css/bootstrap.min.css');
 require('../Content/css/main.css');
 
-var MainBody=React.createClass({
-	render:function(){
-		return (
+export default class MainBody extends React.Component {
+	constructor() {
+        super();
+        this.state = {};
+    };
+    render(){
+    	return (
 			<div className="container">
 				<div className="row">
 					<div className="col-xs-6">
-						<Hello name="Zhoou" />
+						<HelloComponents name="Zhoou" />
 					</div>
 					<div className="col-xs-6">
 						<a href="www.baidu.com">成功</a>
@@ -19,7 +23,7 @@ var MainBody=React.createClass({
 				</div>
 			</div>
 			)
-	}
-});
+    }
+}
 
 ReactDOM.render(<MainBody />, document.getElementById('app'));

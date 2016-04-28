@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-class Hello extends React.Component {
+export default class HelloComponents extends React.Component {
     render(){
         return(
             <h1>hello , {this.props.name}</h1>
@@ -8,4 +8,3 @@ class Hello extends React.Component {
     }
 };
 
-module.exports = Hello;
