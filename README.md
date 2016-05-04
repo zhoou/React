@@ -51,7 +51,7 @@ npm run build
 ```
 Final , Open the html 
 ```
-open Build/View/Index.html in browser
+open /Build/View/Index.html in browser
 ```
 
 Expect me to be better !!!
