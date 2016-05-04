@@ -41,13 +41,17 @@ webpack -p
 
 This Projects add the bootstrap to webpack with react.
 
-Begin to initialize the project : 
+Begin to initialize the plugins the project need: 
 ```sh
 npm install
 ```
-Finally , run it :
+Then , Compile the project :
 ```sh 
 npm run build
+```
+Final , Open the html 
+```
+open Build/View/Index.html in browser
 ```
 
 Expect me to be better !!!
