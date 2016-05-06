@@ -6,11 +6,15 @@ var htmlWebpackPlugin=require("html-webpack-plugin");
 
 var options = {
     entry: {
-        index:__dirname + "/Scripts/entry.js"
+        index:[
+        // 'webpack-dev-server/client?http://localhost:3000',
+        // 'webpack/hot/only-dev-server',
+        __dirname + "/Scripts/entry.js"
+        ]
     },
     output: {
         path: __dirname + '/Build/',
-        publicPath: '../',
+        publicPath: "http://127.0.0.1:3000/Build/",
         filename: 'js/[name].bundle.js',
         chunkFilename:'js/[id].chunk.js'
     },
@@ -18,7 +22,7 @@ var options = {
         loaders: [ 
             { 
                 test: /\.jsx?$/, 
-                loader: 'babel' 
+                loader: 'react-hot!babel'
             },
             { 
                 test: /\.css$/, 
@@ -61,10 +65,9 @@ var options = {
         }
     },
     plugins:[
+        new webpack.HotModuleReplacementPlugin(),  
         new webpack.NoErrorsPlugin(),
-        new ExtractTextPlugin('Content/css/[name].css',{
-            allChunks:true
-        }),
+        
         // new commonsPlugin({
         //     name:"common",
         //     chunks:['jquery','react'],
@@ -75,6 +78,9 @@ var options = {
             name: 'vendor',   // 将公共模块提取，生成名为`vendor`bundle
             chunks: ['index'], //提取哪些模块共有的部分,名字为上面的vendor.
             minChunks: Infinity // 提取至少*个模块共有的部分
+        }),
+        new ExtractTextPlugin('Content/css/[name].css',{
+            allChunks:true
         }),
         new htmlWebpackPlugin({              //根据模板插入css/js等生成最终HTML
             favicon:'./Content/Images/favicon.ico', //favicon路径
