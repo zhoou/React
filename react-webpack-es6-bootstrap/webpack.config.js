@@ -14,7 +14,7 @@ var options = {
     },
     output: {
         path: __dirname + '/Build/',
-        publicPath: "http://127.0.0.1:3000/Build/",
+        publicPath: "../",
         filename: 'js/[name].bundle.js',
         chunkFilename:'js/[id].chunk.js'
     },
