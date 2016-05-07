@@ -3,26 +3,29 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 //var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('js/common.js');
 //var commonsPlugin =require("webpack/lib/optimize/CommonsChunkPlugin");
 var htmlWebpackPlugin=require("html-webpack-plugin");
+var path=require('path');
 
 var options = {
     entry: {
         index:[
-        // 'webpack-dev-server/client?http://localhost:3000',
-        // 'webpack/hot/only-dev-server',
-        __dirname + "/Scripts/entry.js"
-        ]
+         'webpack-dev-server/client?http://localhost:3000',
+         'webpack/hot/only-dev-server',
+          __dirname + "/Scripts/entry.js"
+        ],
+        vendor:['jquery','bootstrap','react','reactDOM']
     },
     output: {
         path: __dirname + '/Build/',
-        publicPath: "../",
         filename: 'js/[name].bundle.js',
-        chunkFilename:'js/[id].chunk.js'
+        chunkFilename:'js/[id].chunk.js',
+        //publicPath:"http://127.0.0.1:3000/Build/"
     },
     module: {
         loaders: [ 
             { 
                 test: /\.jsx?$/, 
-                loader: 'react-hot!babel'
+                loaders: ['react-hot','babel'],
+                include: path.join(__dirname, 'Scripts')
             },
             { 
                 test: /\.css$/, 
@@ -58,10 +61,14 @@ var options = {
     },
     resolve:{
         //自动补全识别哪些后缀
-        extensions:['','.js','.jsx'],
+        extensions:['','.js','.jsx','.css'],
          //模块别名定义，方便后续直接引用别名，无须多写长长的地址
         alias: {
-            Hello : '../Components/Hello.js',//后续直接 require('Hello') 即可
+            'react': path.join(__dirname, 'node_modules', 'react'),
+            'reactDOM':path.join(__dirname, 'node_modules', 'react-dom'),
+            'jquery':path.join(__dirname,'Scripts/Lib/jquery-2.1.4.min'),
+            'bootstrap':path.join(__dirname,'Scripts/Lib/bootstrap.min'),
+            'Hello': '../Components/Hello.js',//后续直接 require('Hello') 即可
         }
     },
     plugins:[
@@ -76,8 +83,14 @@ var options = {
         //commonsPlugin,
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',   // 将公共模块提取，生成名为`vendor`bundle
-            chunks: ['index'], //提取哪些模块共有的部分,名字为上面的vendor.
+            //chunks: ['jquery','bootstrap'], //提取哪些模块共有的部分,名字为上面的vendor.
             minChunks: Infinity // 提取至少*个模块共有的部分
+        }),
+        // 全局依赖jQuery
+        new webpack.ProvidePlugin({
+            $ : "jquery",
+            jQuery : "jquery",
+            "window.jQuery" : "jquery"
         }),
         new ExtractTextPlugin('Content/css/[name].css',{
             allChunks:true
@@ -106,11 +119,15 @@ if(process.env.NODE_ENV==="production"){
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
-         compress:{
+            compress:{
               warnings: false
-             }
+             },
+            except: ['$super', '$', 'exports', 'require']    //排除关键字
         })
     ]);
 };
+
+if(module.hot)
+    module.hot.accept();
 
 module.exports=options;
